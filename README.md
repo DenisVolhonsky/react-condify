@@ -52,8 +52,8 @@ const MyComponent = () => {
   return (
     <Cond
       condition={isLoggedIn}
-      then={() => <Dashboard />}
-      fallback={() => <Login />}
+      then={<Dashboard />}
+      fallback={<Login />}
     />
   );
 };
@@ -71,8 +71,8 @@ const MyComponent = () => {
   return (
     <Cond
       cases={[
-        { condition: status === "loading", then: () => <Loading /> },
-        { condition: status === "error", then: () => <Error /> },
+        { condition: status === "loading", then: <Loading /> },
+        { condition: status === "error", then: <Error /> },
       ]}
       fallback={() => <Data />}
     />
