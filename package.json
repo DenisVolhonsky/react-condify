@@ -14,8 +14,8 @@
   },
   "keywords": [],
   "author": "Denys Volkhonskyi",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "A flexible library for managing conditional rendering of components in React applications with a simple and intuitive syntax.",
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -178,7 +178,7 @@ This project is licensed under the MIT License.
 ## Badges
 
 [![npm version](https://badge.fury.io/js/react-condify.svg)](https://badge.fury.io/js/react-condify)
-[![Node.js CI](https://github.com/username/react-condify/actions/workflows/node.js.yml/badge.svg)](https://github.com/username/react-condify/actions/workflows/node.js.yml)
+[![Node.js CI](https://img.shields.io/github/actions/workflow/status/username/react-condify/node.js.yml?branch=main)](https://github.com/username/react-condify/actions/workflows/node.js.yml)
 
 ## Links
 
