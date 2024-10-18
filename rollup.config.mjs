@@ -3,7 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 
 export default {
-  input: "src/index.js", // Оставляем tsx
+  input: "src/index.js",
   output: [
     {
       file: "dist/index.js",

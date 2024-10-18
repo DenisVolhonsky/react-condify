@@ -1,7 +1,7 @@
 import React from 'react';
 type AsyncCondProps<T> = {
     asyncFunction: () => Promise<T>;
-    then: React.ReactNode;
+    render: (data: T) => React.ReactNode;
     else: React.ReactNode;
     loading: React.ReactNode;
     error: React.ReactNode;
@@ -9,5 +9,5 @@ type AsyncCondProps<T> = {
     cacheKey?: string;
     onError?: (error: Error) => void;
 };
-export declare const AsyncCond: React.FC<AsyncCondProps<any>>;
+export declare const AsyncCond: <T>({ asyncFunction, render, else: elseComponent, loading, error, polling, cacheKey, onError, }: AsyncCondProps<T>) => import("react/jsx-runtime").JSX.Element | null;
 export {};

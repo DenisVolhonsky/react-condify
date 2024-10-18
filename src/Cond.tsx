@@ -7,9 +7,9 @@ type CondCaseProps = {
 
 type CondProps = {
   condition?: boolean;
-  then?: React.ReactNode;
+  then: React.ReactNode;
   cases?: CondCaseProps[];
-  fallback?: React.ReactNode;
+  fallback: React.ReactNode;
 };
 
 export const Cond: React.FC<CondProps> = ({
@@ -18,11 +18,16 @@ export const Cond: React.FC<CondProps> = ({
   cases,
   fallback,
 }) => {
-  if (typeof condition === "boolean")
-    return <>{condition ? then : fallback || null}</>;
+  if (typeof condition === "boolean") {
+    return <>{condition ? then : fallback}</>;
+  }
+
   if (Array.isArray(cases)) {
     const matchingCase = cases.find((c) => c.condition);
-    return <>{matchingCase ? matchingCase.then : fallback || null}</>;
+    if (matchingCase) {
+      return <>{matchingCase.then}</>;
+    }
   }
-  return <>{fallback || null}</>;
+
+  return <>{fallback}</>;
 };

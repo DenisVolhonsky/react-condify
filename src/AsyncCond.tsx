@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-// Типизация для асинхронного компонента AsyncCond
 type AsyncCondProps<T> = {
   asyncFunction: () => Promise<T>;
   render: (data: T) => React.ReactNode;
@@ -12,14 +11,15 @@ type AsyncCondProps<T> = {
   onError?: (error: Error) => void;
 };
 
-// Функции для работы с кэшем
 const getFromCache = <T,>(cacheKey: string): T | null => {
-  const cachedData = typeof window !== 'undefined' && localStorage.getItem(cacheKey);
+  const cachedData =
+    typeof window !== "undefined" && localStorage.getItem(cacheKey);
   return cachedData ? JSON.parse(cachedData) : null;
 };
 
 const saveToCache = <T,>(cacheKey: string, data: T) => {
-  typeof window !== 'undefined' && localStorage.setItem(cacheKey, JSON.stringify(data));
+  typeof window !== "undefined" &&
+    localStorage.setItem(cacheKey, JSON.stringify(data));
 };
 
 export const AsyncCond = <T,>({
@@ -32,35 +32,35 @@ export const AsyncCond = <T,>({
   cacheKey,
   onError,
 }: AsyncCondProps<T>) => {
-  const [state, setState] = useState<'loading' | 'success' | 'error' | 'empty'>('loading');
+  const [state, setState] = useState<"loading" | "success" | "error" | "empty">(
+    "loading"
+  );
   const [data, setData] = useState<T | null>(null);
 
   const execute = async () => {
     try {
-      setState('loading');
+      setState("loading");
       let response;
 
-      // Проверка наличия данных в кэше
       if (cacheKey) {
         const cachedData = getFromCache<T>(cacheKey);
         if (cachedData) {
           setData(cachedData);
-          setState('success');
+          setState("success");
           return;
         }
       }
 
-      // Выполнение запроса
       response = await asyncFunction();
       if (response) {
         setData(response);
-        setState('success');
+        setState("success");
         if (cacheKey) saveToCache(cacheKey, response);
       } else {
-        setState('empty');
+        setState("empty");
       }
     } catch (err) {
-      setState('error');
+      setState("error");
       if (onError) onError(err as Error);
     }
   };
@@ -73,8 +73,8 @@ export const AsyncCond = <T,>({
     }
   }, [asyncFunction, polling, cacheKey]);
 
-  if (state === 'loading') return <>{loading}</>;
-  if (state === 'error') return <>{error}</>;
-  if (state === 'empty') return <>{elseComponent}</>;
+  if (state === "loading") return <>{loading}</>;
+  if (state === "error") return <>{error}</>;
+  if (state === "empty") return <>{elseComponent}</>;
   return data ? <>{render(data)}</> : null;
 };

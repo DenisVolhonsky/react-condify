@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 type CondCaseProps = {
     condition: boolean;
-    render: React.ReactNode;
+    then: React.ReactNode;
 };
 type CondProps = {
-    case?: CondCaseProps;
+    condition?: boolean;
+    then: React.ReactNode;
     cases?: CondCaseProps[];
-    fallback?: React.ReactNode;
+    fallback: React.ReactNode;
 };
 export declare const Cond: React.FC<CondProps>;
 export {};
